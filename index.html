@@ -1,1 +1,286 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pembeatan Janezha Azahra Moha</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#fdf8f6;
+color:#444;
+overflow-x:hidden;
+}
+
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+background:linear-gradient(rgba(255,255,255,.5),rgba(255,255,255,.5)),
+url("images/foto1.jpeg");
+background-size:cover;
+background-position:center;
+}
+
+.hero h1{
+font-family:'Great Vibes',cursive;
+font-size:70px;
+color:#7a5c61;
+}
+
+.hero h2{
+margin-top:10px;
+font-size:22px;
+}
+
+.btn{
+margin-top:25px;
+padding:12px 25px;
+border:none;
+border-radius:30px;
+background:#7a5c61;
+color:white;
+cursor:pointer;
+font-size:16px;
+}
+
+.section{
+padding:60px 20px;
+text-align:center;
+}
+
+.card{
+max-width:800px;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 5px 20px rgba(0,0,0,.1);
+}
+
+.nama{
+font-size:30px;
+font-weight:600;
+margin:20px 0;
+color:#7a5c61;
+}
+
+.countdown{
+display:flex;
+justify-content:center;
+gap:15px;
+flex-wrap:wrap;
+margin-top:25px;
+}
+
+.box{
+background:#fff;
+padding:15px;
+min-width:90px;
+border-radius:12px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+.box span{
+font-size:28px;
+font-weight:bold;
+display:block;
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:15px;
+margin-top:30px;
+}
+
+.gallery img{
+width:100%;
+height:350px;
+object-fit:cover;
+border-radius:15px;
+}
+
+footer{
+background:#7a5c61;
+color:white;
+padding:30px;
+text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+
+<h1>Pembeatan</h1>
+
+<p>Kepada Yth.</p>
+
+<h2 id="tamu">Bapak/Ibu/Saudara/i</h2>
+
+<button class="btn" onclick="bukaUndangan()">
+Buka Undangan
+</button>
+
+</section>
+
+<section class="section" id="undangan">
+
+<div class="card">
+
+<h2>Assalamu'alaikum Warahmatullahi Wabarakatuh</h2>
+
+<br>
+
+<p>
+Dengan rahmat dan ridho Allah SWT,
+kami mengundang Bapak/Ibu/Saudara/i
+dalam rangka Pembeatan anak kami :
+</p>
+
+<div class="nama">
+Janezha Azahra Moha<br>
+(Nesa)
+</div>
+
+<p><b>Hari :</b> Minggu</p>
+<p><b>Tanggal :</b> 14 Juni 2026</p>
+<p><b>Waktu :</b> 15.00 WITA</p>
+
+<br>
+
+<p>
+<b>Tempat :</b><br>
+Desa Bongoime<br>
+Kecamatan Tilongkabila<br>
+Kabupaten Bone Bolango
+</p>
+
+<br>
+
+<p>
+Petunjuk Lokasi : Titik Maps Kios Neva
+</p>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2>Menuju Hari Acara</h2>
+
+<div class="countdown">
+
+<div class="box">
+<span id="hari">0</span>
+Hari
+</div>
+
+<div class="box">
+<span id="jam">0</span>
+Jam
+</div>
+
+<div class="box">
+<span id="menit">0</span>
+Menit
+</div>
+
+<div class="box">
+<span id="detik">0</span>
+Detik
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2>Galeri Foto</h2>
+
+<div class="gallery">
+
+<img src="images/foto1.jpeg">
+<img src="images/foto2.jpeg">
+<img src="images/foto3.jpeg">
+<img src="images/foto4.jpeg">
+
+</div>
+
+</section>
+
+<footer>
+
+<h3>Terima Kasih</h3>
+
+<p>
+Atas kehadiran dan doa restunya,
+kami ucapkan terima kasih.
+</p>
+
+<br>
+
+<p>
+Wassalamu'alaikum Warahmatullahi Wabarakatuh
+</p>
+
+</footer>
+
+<script>
+
+const params = new URLSearchParams(window.location.search);
+const tamu = params.get("to");
+
+if(tamu){
+document.getElementById("tamu").innerHTML =
+decodeURIComponent(tamu);
+}
+
+function bukaUndangan(){
+document.getElementById("undangan")
+.scrollIntoView({behavior:"smooth"});
+}
+
+const target =
+new Date("June 14, 2026 15:00:00").getTime();
+
+setInterval(()=>{
+
+const now = new Date().getTime();
+const distance = target - now;
+
+document.getElementById("hari").innerHTML =
+Math.floor(distance/(1000*60*60*24));
+
+document.getElementById("jam").innerHTML =
+Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+
+document.getElementById("menit").innerHTML =
+Math.floor((distance%(1000*60*60))/(1000*60));
+
+document.getElementById("detik").innerHTML =
+Math.floor((distance%(1000*60))/1000);
+
+},1000);
+
+</script>
+
+</body>
+</html>
